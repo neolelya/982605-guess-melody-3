@@ -26,7 +26,18 @@ const question = {
 
 it(`Should render ArtistQuestionScreen correctly`, () => {
   const tree = renderer
-    .create(<ArtistQuestionScreen onAnswer={() => {}} question={question} />)
+    .create(
+        <ArtistQuestionScreen
+          onAnswer={() => {}}
+          question={question}
+          renderPlayer={() => {}}
+        />,
+        {
+          createNodeMock: () => {
+            return {};
+          },
+        }
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
