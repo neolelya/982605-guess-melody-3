@@ -45,14 +45,18 @@ exports[`Should render GameScreen correctly with ArtistQuestionScreen 1`] = `
       className="game__mistakes"
     >
       <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
+        className="game__mistakes"
+      >
+        <div
+          className="wrong"
+        />
+        <div
+          className="wrong"
+        />
+        <div
+          className="wrong"
+        />
+      </div>
     </div>
   </header>
   <div
@@ -108,14 +112,18 @@ exports[`Should render GameScreen correctly with GenreQuestionScreen 1`] = `
       className="game__mistakes"
     >
       <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
+        className="game__mistakes"
+      >
+        <div
+          className="wrong"
+        />
+        <div
+          className="wrong"
+        />
+        <div
+          className="wrong"
+        />
+      </div>
     </div>
   </header>
   <div

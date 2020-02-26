@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import GameScreen from './game-screen.jsx';
+import {GameScreen} from './game-screen.jsx';
 import {GameType} from '../../const';
 
 const Child = {
@@ -11,7 +11,11 @@ const Child = {
 describe(`Should render GameScreen correctly`, () => {
   it(`with ArtistQuestionScreen`, () => {
     const tree = renderer
-      .create(<GameScreen type={GameType.ARTIST}>{Child.ARTIST}</GameScreen>)
+      .create(
+          <GameScreen type={GameType.ARTIST} mistakes={3}>
+            {Child.ARTIST}
+          </GameScreen>
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -19,7 +23,11 @@ describe(`Should render GameScreen correctly`, () => {
 
   it(`with GenreQuestionScreen`, () => {
     const tree = renderer
-      .create(<GameScreen type={GameType.GENRE}>{Child.GENRE}</GameScreen>)
+      .create(
+          <GameScreen type={GameType.GENRE} mistakes={3}>
+            {Child.GENRE}
+          </GameScreen>
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
