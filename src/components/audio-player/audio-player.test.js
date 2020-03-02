@@ -8,7 +8,14 @@ it(`Should render AudioPlayer correctly`, () => {
 
   const tree = renderer
     .create(
-        <AudioPlayer isPlaying={false} src={src} onPlayButtonClick={() => {}} />,
+        <AudioPlayer
+          isPlaying={false}
+          src={src}
+          onPlayButtonClick={() => {}}
+          isLoading={true}
+        >
+          <audio />
+        </AudioPlayer>,
         {
           createNodeMock: () => {
             return {};
