@@ -2,12 +2,11 @@ import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import {configure, mount} from 'enzyme';
 import AudioPlayer from './audio-player.jsx';
-import questions from '../../mocks/questions';
 
 configure({adapter: new Adapter()});
 
 it(`Should switch Play and Pause buttons`, () => {
-  const {src} = questions[1].song;
+  const src = `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`;
   const onPlayButtonClick = jest.fn();
 
   const player = mount(

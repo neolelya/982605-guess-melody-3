@@ -17,7 +17,8 @@ const WinScreen = (props) => {
       </div>
       <h2 className="result__title">Вы настоящий меломан!</h2>
       <p className="result__total">
-        Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили{` `}
+        Вы ответили правильно на {correctlyQuestionsCount} вопросов и совершили
+        {` `}
         {mistakesCount} ошибки
       </p>
       <button className="replay" type="button" onClick={onReplayButtonClick}>

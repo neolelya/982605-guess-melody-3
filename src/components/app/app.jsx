@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {ActionCreator} from '../../reducer/game/game';
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
 import GameOverScreen from '../game-over-screen/game-over-screen.jsx';
@@ -12,6 +12,14 @@ import GenreQuestionScreen from '../genre-question-screen/genre-question-screen.
 import withActivePlayer from '../../hocs/with-active-player/with-active-player.jsx';
 import withUserAnswer from '../../hocs/with-user-answer/with-user-answer.jsx';
 import {GameType} from '../../const';
+import {
+  getStep,
+  getMistakes,
+  getMaxMistakes,
+} from '../../reducer/game/selectors';
+import {getQuestions} from '../../reducer/data/selectors';
+import {getUser} from '../../reducer/user/selectors';
+import {Operation as UserOperation} from '../../reducer/user/user';
 
 const GenreQuestionScreenWrapped = withActivePlayer(
     withUserAnswer(GenreQuestionScreen)
@@ -118,10 +126,11 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  step: state.step,
-  maxMistakesCount: state.maxMistakesCount,
-  questions: state.questions,
-  mistakes: state.mistakes,
+  authorizationStatus: getUser(state),
+  step: getStep(state),
+  maxMistakesCount: getMaxMistakes(state),
+  mistakes: getMistakes(state),
+  questions: getQuestions(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -134,6 +143,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   resetGame() {
     dispatch(ActionCreator.resetGame());
+  },
+  login(authData) {
+    dispatch(UserOperation.login(authData));
   },
 });
 
