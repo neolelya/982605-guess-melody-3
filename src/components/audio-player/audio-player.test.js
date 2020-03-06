@@ -1,10 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import AudioPlayer from './audio-player.jsx';
-import questions from '../../mocks/questions';
 
 it(`Should render AudioPlayer correctly`, () => {
-  const {src} = questions[1].song;
+  const src = `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`;
 
   const tree = renderer
     .create(
