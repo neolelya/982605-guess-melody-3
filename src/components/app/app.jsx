@@ -11,6 +11,7 @@ import ArtistQuestionScreen from '../artist-question-screen/artist-question-scre
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen.jsx';
 import withActivePlayer from '../../hocs/with-active-player/with-active-player.jsx';
 import withUserAnswer from '../../hocs/with-user-answer/with-user-answer.jsx';
+import AuthorizationScreen from '../authorization-screen/authorization-screen.jsx';
 import {GameType} from '../../const';
 import {
   getStep,
@@ -19,7 +20,10 @@ import {
 } from '../../reducer/game/selectors';
 import {getQuestions} from '../../reducer/data/selectors';
 import {getUser} from '../../reducer/user/selectors';
-import {Operation as UserOperation} from '../../reducer/user/user';
+import {
+  AuthorizationStatus,
+  Operation as UserOperation,
+} from '../../reducer/user/user';
 
 const GenreQuestionScreenWrapped = withActivePlayer(
     withUserAnswer(GenreQuestionScreen)
@@ -29,6 +33,8 @@ const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 class App extends PureComponent {
   _renderGameScreen() {
     const {
+      login,
+      authorizationStatus,
       maxMistakesCount,
       mistakes,
       questions,
@@ -53,13 +59,23 @@ class App extends PureComponent {
     }
 
     if (step >= questions.length) {
-      return (
-        <WinScreen
-          questionsCount={questions.length}
-          mistakesCount={mistakes}
-          onReplayButtonClick={resetGame}
-        />
-      );
+      if (authorizationStatus === AuthorizationStatus) {
+        return (
+          <WinScreen
+            questionsCount={questions.length}
+            mistakesCount={mistakes}
+            onReplayButtonClick={resetGame}
+          />
+        );
+      } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+        return (
+          <AuthorizationScreen
+            onSubmit={login}
+            onReplayButtonClick={resetGame}
+          />
+        );
+      }
+      return null;
     }
 
     if (question) {
@@ -109,6 +125,12 @@ class App extends PureComponent {
               onAnswer={() => {}}
             />
           </Route>
+          <Route exact path="/dev-auth">
+            <AuthorizationScreen
+              onReplayButtonClick={() => {}}
+              onSubmit={() => {}}
+            />
+          </Route>
         </Switch>
       </BrowserRouter>
     );
@@ -116,6 +138,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  login: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   maxMistakesCount: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,

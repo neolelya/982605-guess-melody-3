@@ -4,7 +4,7 @@ const AuthorizationStatus = {
 };
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.AUTH,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
 const ActionType = {
