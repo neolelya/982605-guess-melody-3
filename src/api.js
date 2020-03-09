@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const Error = {
+const StatusCode = {
   UNAUTHORIZED: 401,
 };
 
@@ -14,7 +14,7 @@ export const createAPI = (onAuthorized) => {
   const onSuccess = (response) => response;
 
   const onError = (err) => {
-    if (err.response.status === Error.UNAUTHORIZED) {
+    if (err.response.status === StatusCode.UNAUTHORIZED) {
       onAuthorized();
       throw err;
     }
