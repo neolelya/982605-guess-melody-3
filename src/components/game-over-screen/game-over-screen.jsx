@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 const GameOverScreen = (props) => {
   const {onReplayButtonClick} = props;
@@ -18,9 +20,9 @@ const GameOverScreen = (props) => {
       <p className="result__total result__total--fail">
         У вас закончились все попытки. Ничего, повезёт в следующий раз!
       </p>
-      <button className="replay" type="button" onClick={onReplayButtonClick}>
+      <Link to={AppRoute.ROOT} className="replay" onClick={onReplayButtonClick}>
         Попробовать ещё раз
-      </button>
+      </Link>
     </section>
   );
 };
