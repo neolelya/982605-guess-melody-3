@@ -104,6 +104,62 @@ it(`Reducer should return default`, () => {
   });
 });
 
+it(`Reducer should return step -1`, () => {
+  expect(
+      reducer(
+          {
+            step: 5,
+            mistakes: 1,
+            maxMistakesCount: 3,
+          },
+          {
+            type: ActionType.GO_WELCOME,
+            payload: null,
+          }
+      )
+  ).toEqual({
+    step: -1,
+    mistakes: 0,
+    maxMistakesCount: 3,
+  });
+
+  expect(
+      reducer(
+          {
+            step: 0,
+            mistakes: 0,
+            maxMistakesCount: 3,
+          },
+          {
+            type: ActionType.GO_WELCOME,
+            payload: null,
+          }
+      )
+  ).toEqual({
+    step: -1,
+    mistakes: 0,
+    maxMistakesCount: 3,
+  });
+
+  expect(
+      reducer(
+          {
+            step: -1,
+            mistakes: 0,
+            maxMistakesCount: 3,
+          },
+          {
+            type: ActionType.GO_WELCOME,
+            payload: null,
+          }
+      )
+  ).toEqual({
+    step: -1,
+    mistakes: 0,
+    maxMistakesCount: 3,
+  });
+});
+
 describe(`Action creators work correctly`, () => {
   it(`Action creator for incrementing step returns correct action`, () => {
     expect(ActionCreator.incrementStep()).toEqual({
@@ -251,6 +307,13 @@ describe(`Action creators work correctly`, () => {
   it(`Action creator for reset game returns action with null payload`, () => {
     expect(ActionCreator.resetGame()).toEqual({
       type: ActionType.RESET,
+      payload: null,
+    });
+  });
+
+  it(`Action creator for go to WelcomeScreen returns action with null payload`, () => {
+    expect(ActionCreator.goWelcome()).toEqual({
+      type: ActionType.GO_WELCOME,
       payload: null,
     });
   });
