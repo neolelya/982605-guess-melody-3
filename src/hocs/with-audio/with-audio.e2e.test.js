@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import withAudio from './with-audio.jsx';
+import withAudio from './with-audio.tsx';
 
 configure({adapter: new Adapter()});
 

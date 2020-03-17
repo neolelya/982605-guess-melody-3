@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Router} from 'react-router-dom';
-import WinScreen from './win-screen.jsx';
+import WinScreen from './win-screen.tsx';
 import history from '../../history';
 
 describe(`Should WinScreen render correctly`, () => {

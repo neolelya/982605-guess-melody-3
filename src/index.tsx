@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
@@ -13,7 +13,7 @@ import {
   AuthorizationStatus,
 } from './reducer/user/user';
 import {createAPI} from './api';
-import App from './components/app/app.jsx';
+import App from './components/app/app.js';
 
 const onUnauthorized = () => {
   store.dispatch(

@@ -1,7 +1,7 @@
 import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import withUserAnswer from './with-user-answer.jsx';
+import withUserAnswer from './with-user-answer.tsx';
 
 configure({adapter: new Adapter()});
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import {configure, mount} from 'enzyme';
-import AudioPlayer from './audio-player.jsx';
+import AudioPlayer from './audio-player.tsx';
 
 configure({adapter: new Adapter()});
 

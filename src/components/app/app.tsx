@@ -1,18 +1,18 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/game/game';
-import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
-import GameScreen from '../game-screen/game-screen.jsx';
-import GameOverScreen from '../game-over-screen/game-over-screen.jsx';
-import WinScreen from '../win-screen/win-screen.jsx';
-import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen.jsx';
-import GenreQuestionScreen from '../genre-question-screen/genre-question-screen.jsx';
-import withActivePlayer from '../../hocs/with-active-player/with-active-player.jsx';
-import withUserAnswer from '../../hocs/with-user-answer/with-user-answer.jsx';
-import AuthorizationScreen from '../authorization-screen/authorization-screen.jsx';
-import {PrivateRoute} from '../private-route/private-route.jsx';
+import WelcomeScreen from '../welcome-screen/welcome-screen';
+import GameScreen from '../game-screen/game-screen';
+import GameOverScreen from '../game-over-screen/game-over-screen';
+import WinScreen from '../win-screen/win-screen';
+import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
+import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player';
+import withUserAnswer from '../../hocs/with-user-answer/with-user-answer';
+import AuthorizationScreen from '../authorization-screen/authorization-screen';
+import {PrivateRoute} from '../private-route/private-route';
 import {GameType, AppRoute} from '../../const';
 import {
   getStep,
@@ -32,7 +32,7 @@ const GenreQuestionScreenWrapped = withActivePlayer(
 );
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
-class App extends PureComponent {
+class App extends React.PureComponent {
   _renderGameScreen() {
     const {
       authorizationStatus,

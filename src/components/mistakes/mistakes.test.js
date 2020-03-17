@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Mistakes from './mistakes.jsx';
+import Mistakes from './mistakes.tsx';
 
 describe(`Should Mistakes render correctly`, () => {
   it(`With mistakes count = 0`, () => {

@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import Mistakes from '../mistakes/mistakes.jsx';
+import Mistakes from '../mistakes/mistakes';
 import {GameType} from '../../const';
 import {getMistakes} from '../../reducer/game/selectors';
 import {ActionCreator} from '../../reducer/game/game';

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import AudioPlayer from './audio-player.jsx';
+import AudioPlayer from './audio-player.tsx';
 
 it(`Should render AudioPlayer correctly`, () => {
   const src = `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`;

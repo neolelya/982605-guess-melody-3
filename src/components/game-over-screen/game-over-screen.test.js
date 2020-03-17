@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Router} from 'react-router-dom';
-import GameOverScreen from './game-over-screen.jsx';
+import GameOverScreen from './game-over-screen.tsx';
 import history from '../../history';
 
 it(`Should GameOverScreen render correctly`, () => {
