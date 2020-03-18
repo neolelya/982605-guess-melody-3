@@ -1,9 +1,13 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Router} from 'react-router-dom';
-import {GameScreen} from './game-screen.tsx';
-import {GameType} from '../../const';
+import {GameScreen} from './game-screen';
+import {GameType} from '../../types';
 import history from '../../history';
+
+export const noop = () => {
+  //  do nothing
+};
 
 const Child = {
   ARTIST: <div className="children-component">Artist component</div>,
@@ -15,7 +19,7 @@ describe(`Should render GameScreen correctly`, () => {
     const tree = renderer
       .create(
           <Router history={history}>
-            <GameScreen type={GameType.ARTIST} mistakes={3} goWelcome={() => {}}>
+            <GameScreen type={GameType.ARTIST} mistakes={3} goWelcome={noop}>
               {Child.ARTIST}
             </GameScreen>
           </Router>
@@ -29,7 +33,7 @@ describe(`Should render GameScreen correctly`, () => {
     const tree = renderer
       .create(
           <Router history={history}>
-            <GameScreen type={GameType.GENRE} mistakes={3} goWelcome={() => {}}>
+            <GameScreen type={GameType.GENRE} mistakes={3} goWelcome={noop}>
               {Child.GENRE}
             </GameScreen>
           </Router>

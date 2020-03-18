@@ -1,19 +1,19 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import PropTypes from 'prop-types';
-import withAudio from './with-audio.tsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import withAudio from './with-audio';
 
-const MockComponent = (props) => {
+export const noop = () => {
+  //  do nothing
+};
+
+interface MockComponentProps {
+  children: React.ReactNode;
+}
+
+const MockComponent = (props: MockComponentProps) => {
   const {children} = props;
 
   return <div>{children}</div>;
-};
-
-MockComponent.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
 };
 
 const MockComponentWrapped = withAudio(MockComponent);
@@ -23,7 +23,7 @@ it(`Should withAudio render correctly`, () => {
     .create(
         <MockComponentWrapped
           isPlaying={false}
-          onPlayButtonClick={() => {}}
+          onPlayButtonClick={noop}
           src={``}
         />,
         {

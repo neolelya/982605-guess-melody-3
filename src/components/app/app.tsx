@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/game/game';
@@ -13,7 +12,7 @@ import withActivePlayer from '../../hocs/with-active-player/with-active-player';
 import withUserAnswer from '../../hocs/with-user-answer/with-user-answer';
 import AuthorizationScreen from '../authorization-screen/authorization-screen';
 import {PrivateRoute} from '../private-route/private-route';
-import {GameType, AppRoute} from '../../const';
+import {AppRoute} from '../../const';
 import {
   getStep,
   getMistakes,
@@ -26,13 +25,28 @@ import {
   Operation as UserOperation,
 } from '../../reducer/user/user';
 import history from '../../history';
+import {GameType, QuestionArtist, QuestionGenre} from '../../types';
+
+interface Props {
+  authorizationStatus: string;
+  maxMistakesCount: number;
+  mistakes: number;
+  questions: Question[];
+  step: number;
+  onUserAnswer: () => void;
+  onWelcomeButtonClick: () => void;
+  resetGame: () => void;
+  login: () => void;
+}
+
+type Question = QuestionGenre | QuestionArtist;
 
 const GenreQuestionScreenWrapped = withActivePlayer(
     withUserAnswer(GenreQuestionScreen)
 );
 const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
-class App extends React.PureComponent {
+class App extends React.PureComponent<Props, {}> {
   _renderGameScreen() {
     const {
       authorizationStatus,
@@ -136,18 +150,6 @@ class App extends React.PureComponent {
     );
   }
 }
-
-App.propTypes = {
-  login: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  maxMistakesCount: PropTypes.number.isRequired,
-  mistakes: PropTypes.number.isRequired,
-  questions: PropTypes.array.isRequired,
-  step: PropTypes.number.isRequired,
-  onUserAnswer: PropTypes.func.isRequired,
-  onWelcomeButtonClick: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),

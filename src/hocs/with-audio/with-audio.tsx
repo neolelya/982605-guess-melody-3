@@ -1,12 +1,25 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
+interface Props {
+  src: string;
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+}
+
+interface State {
+  progress: number;
+  isLoading: boolean;
+  isPlaying: boolean;
+}
 
 const withAudio = (Component) => {
-  class WithAudio extends React.PureComponent {
+  class WithAudio extends React.PureComponent<Props, State> {
+    private audioRef: React.RefObject<HTMLAudioElement>;
+
     constructor(props) {
       super(props);
 
-      this._audioRef = React.createRef();
+      this.audioRef = React.createRef();
 
       this.state = {
         progress: 0,
@@ -17,7 +30,7 @@ const withAudio = (Component) => {
 
     componentDidMount() {
       const {src} = this.props;
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       audio.src = src;
 
@@ -43,7 +56,7 @@ const withAudio = (Component) => {
     }
 
     componentWillUnmount() {
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       audio.oncanplaythrough = null;
       audio.onplay = null;
@@ -53,7 +66,7 @@ const withAudio = (Component) => {
     }
 
     componentDidUpdate() {
-      const audio = this._audioRef.current;
+      const audio = this.audioRef.current;
 
       if (this.state.isPlaying) {
         audio.play();
@@ -76,17 +89,11 @@ const withAudio = (Component) => {
             onPlayButtonClick();
           }}
         >
-          <audio ref={this._audioRef} />
+          <audio ref={this.audioRef} />
         </Component>
       );
     }
   }
-
-  WithAudio.propTypes = {
-    isPlaying: PropTypes.bool.isRequired,
-    src: PropTypes.string.isRequired,
-    onPlayButtonClick: PropTypes.func.isRequired,
-  };
 
   return WithAudio;
 };

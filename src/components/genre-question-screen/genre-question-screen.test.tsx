@@ -1,9 +1,14 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import GenreQuestionScreen from './genre-question-screen.tsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import GenreQuestionScreen from './genre-question-screen';
+import {GameType, QuestionGenre} from '../../types';
 
-const question = {
-  type: `genre`,
+export const noop = () => {
+  //  do nothing
+};
+
+const question: QuestionGenre = {
+  type: GameType.GENRE,
   genre: `rock`,
   answers: [
     {
@@ -29,10 +34,10 @@ it(`Should render GenreQuestionScreen correctly`, () => {
   const tree = renderer
     .create(
         <GenreQuestionScreen
-          onAnswer={() => {}}
+          onAnswer={noop}
           question={question}
-          renderPlayer={() => {}}
-          onChange={() => {}}
+          renderPlayer={() => null}
+          onChange={noop}
           userAnswers={[false, false, false, false]}
         />,
         {

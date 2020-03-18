@@ -1,4 +1,4 @@
-import {GameType} from '../../const';
+import {GameType} from '../../types';
 
 const initialState = {
   mistakes: 0,
